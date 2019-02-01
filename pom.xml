@@ -9,7 +9,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>fixeddeposit Maven Webapp</name>
+  <name>fixeddeposit</name>
   
   <url>http://maven.apache.org</url>
 
