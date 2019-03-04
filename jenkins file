@@ -3,20 +3,16 @@ pipeline {
             def mvnHome = tool name: 'E:\\softwares\\apache-maven-3.5.2', type: 'maven'
             bat "${mvnHome}/bin/mvn package"
         }
-    }
      
   stage('testing-stage') {
-             steps {
-                def mvnHome = tool name: 'E:\\softwares\\apache-maven-3.5.2', type: 'maven'
-                bat "${mvnHome}/bin/mvn test"
-        }
-    }
+            def mvnHome = tool name: 'E:\\softwares\\apache-maven-3.5.2', type: 'maven'
+            bat "${mvnHome}/bin/mvn test"
+        }   
    
-   stage('deployment-stage') {
-              steps {
-                  def mvnHome = tool name: 'E:\\softwares\\apache-maven-3.5.2', type: 'maven'
-                  bat "${mvnHome}/bin/mvn deploy"
-         }
-     }
+    stage('deployment-stage') {
+            def mvnHome = tool name: 'E:\\softwares\\apache-maven-3.5.2', type: 'maven'
+            bat "${mvnHome}/bin/mvn deploy"
+        }
+}
    
 
