@@ -18,6 +18,5 @@ pipeline {
                   bat "${mvnHome}/bin/mvn deploy"
          }
      }
-    
-}
+   
 
