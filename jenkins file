@@ -3,28 +3,25 @@ pipeline {
     agent any
     
     stages {
-        stage('Compile stage') {
-            steps {
-                Maven(maven : 'maven-3.5.2') {
-                   bat 'mvn clean compile'
+        stage('Compile package') {
+            def mvnHome = tool name: 'E:\\softwares\\apache-maven-3.5.2', type: 'maven'
+            bat "${mvnHome}/bin/mvn package"
         }
     }
-  }   
+     
   stage('testing stage') {
              steps {
-                Maven(maven : 'maven-3.5.2') {
-                bat "mvn test"
+                def mvnHome = tool name: 'E:\\softwares\\apache-maven-3.5.2', type: 'maven'
+                bat "${mvnHome}/bin/mvn test"
         }
     }
-   }
+   
    stage('deployment stage') {
               steps {
-                  Maven(maven : 'maven-3.5.2') {
-                bat "mvn deploy"
+                  def mvnHome = tool name: 'E:\\softwares\\apache-maven-3.5.2', type: 'maven'
+                  bat "${mvnHome}/bin/mvn deploy"
          }
      }
-   }
-  } 
-}  
-  
-  
+    
+}
+
