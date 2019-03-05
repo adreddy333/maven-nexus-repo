@@ -1,13 +1,23 @@
-node{
-        stage('Compile-package') {
-            def mvnHome = tool name: 'E:\\softwares\\apache-maven-3.5.2', type: 'maven'
-            bat "${mvnHome}/bin/mvn package"
+node {
+ 	// Clean workspace before doing anything
+    deleteDir()
+
+    try {
+        stage ('Clone') {
+        	checkout scm
         }
-     
-       stage('testing-stage') {
-            def mvnHome = tool name: 'E:\\softwares\\apache-maven-3.5.2', type: 'maven'
-            bat "${mvnHome}/bin/mvn test"
-        }   
-}
-   
+        stage ('Build') {
+        	sh "echo 'shell scripts to build project...'"
+        }
+        stage ('Tests') {
+	        parallel 'static': {
+	            sh "echo 'shell scripts to run static tests...'"
+	        },
+	        'unit': {
+	            sh "echo 'shell scripts to run unit tests...'"
+	        },
+	        'integration': {
+	            sh "echo 'shell scripts to run integration tests...'"
+	        }
+        }
 
